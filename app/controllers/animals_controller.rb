@@ -1,8 +1,13 @@
 class AnimalsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+rescue_from Exception, :with => :handle_500
 
   def record_not_found
-    render json: {error: 'not found'}, status: 404
+    render json: {error: 'not found 404'}, status: 404
+  end
+
+  def handle_500
+    render json: {error: 'status 500'}, status: 500
   end
 
   def index
